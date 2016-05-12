@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - loaders - OBJ loader</title>
+		<title>WebGLObjSculptureViewer</title>
+		<!-- Original code from three.js webgl - loaders - OBJ loader -->
+		<!-- Lots of help from Eric Haines and other folks at Boston Khronos Meetup -->
+		<!-- All geometry (c) 2015 Mark J. Stock -->
+		<!-- This code hosted at https://github.com/markstock/WebGLObjSculptureViewer -->
+		
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -30,7 +35,7 @@
 		Chaotic Escape (m70)
 		</div>
 
-		<script src="three.js"></script>
+		<script src="three.min.js"></script>
 		<script src="OBJLoader.js"></script>
 		<script src="ColladaLoader.js"></script>
 		<script src="VRMLLoader.js"></script>
@@ -123,7 +128,16 @@
 
 
 				// model
-				var mat = new THREE.MeshStandardMaterial( { color: 0xffffff, vertexColors: THREE.VertexColors } );
+				//var mat = new THREE.MeshStandardMaterial( { color: 0xffffff, vertexColors: THREE.VertexColors } );
+
+				/*
+				var texture = new THREE.Texture();
+				var loader = new THREE.ImageLoader( manager );
+				loader.load( 'textures/UV_Grid_Sm.jpg', function ( image ) {
+					texture.image = image;
+					texture.needsUpdate = true;
+				} );
+				*/
 
 				var loader = new THREE.OBJLoader( manager );
 				loader.load( 'm70_24_v2_cn_25k.obj', function ( object ) {
@@ -133,7 +147,7 @@
 						//}
 					} );
 					object.position.z = -12;
-					object.material = mat;
+					//object.material = mat;
 					scene.add( object );
 				}, onProgress, onError );
 
