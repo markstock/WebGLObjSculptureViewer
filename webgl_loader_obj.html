@@ -90,7 +90,7 @@
 				//directionalLight.position.set( 1, 1, 1 );
 				//scene.add( directionalLight );
 
-				headLight = new THREE.PointLight( 0xbbbbbb, 1.0 );
+				headLight = new THREE.PointLight( 0xffffff, 1.0 );
 				//headLight.color.setHSL( 0.1, 1, 0.95 );
 				headLight.position.copy( camera.position );
 				//headLight.position.y += lightOffset;
@@ -98,7 +98,7 @@
 				//offsetVector.multiplyScalar( lightOffset );
 				//headLight.position.add( offsetVector );
 
-				headLight.position.addScaledVector( camera.up, 40.0 );
+				headLight.position.addScaledVector( camera.up, 0.1 );
 
 				scene.add( headLight );
 
@@ -130,21 +130,20 @@
 				// model
 				//var mat = new THREE.MeshStandardMaterial( { color: 0xffffff, vertexColors: THREE.VertexColors } );
 
-				/*
 				var texture = new THREE.Texture();
 				var loader = new THREE.ImageLoader( manager );
-				loader.load( 'textures/UV_Grid_Sm.jpg', function ( image ) {
+				loader.load( 'm70_24_v2_cn_25k_color3.png', function ( image ) {
 					texture.image = image;
 					texture.needsUpdate = true;
 				} );
-				*/
 
 				var loader = new THREE.OBJLoader( manager );
-				loader.load( 'm70_24_v2_cn_25k.obj', function ( object ) {
+				//loader.load( 'm70_24_v2_cn_25k.obj', function ( object ) {
+				loader.load( 'm70_24_v2_tex3n_25k.obj', function ( object ) {
 					object.traverse( function ( child ) {
-						//if ( child instanceof THREE.Mesh ) {
-							//child.material.map = texture;
-						//}
+						if ( child instanceof THREE.Mesh ) {
+							child.material.map = texture;
+						}
 					} );
 					object.position.z = -12;
 					//object.material = mat;
@@ -241,7 +240,7 @@
 				//var camDir = pWorld.sub( camera.position ).normalize();
 				//headLight.position.addScaledVector( pWorld, 30.0 );
 
-				headLight.position.addScaledVector( camera.up, 40.0 );
+				headLight.position.addScaledVector( camera.up, 0.1 );
 
 				var hemiVec = new THREE.Vector3( 0, 0, 0 );
 				hemiLight.position.copy( hemiVec );
